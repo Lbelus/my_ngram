@@ -14,16 +14,17 @@
 |2        |9└──────────────────────────────────────────────────────────────────────────p───────────────────┘1|
 |         |abcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrst|
 |         └─────────────────────────────────────────────1────────────────────────────────────────────────────┘
-
+|
 */
 
 #include <fcntl.h>
 #include <stdio.h>
 #include <unistd.h>
+
+
 #define SIZE_MAX 128
 
 int main(int argc, char** argv){
-int fd =0, write_fd =0;
     char array[SIZE_MAX] = {0};
 
     for(int x = 1; x < argc; x++){
@@ -33,13 +34,14 @@ int fd =0, write_fd =0;
         }
     }
 
-    for(int i = 0; i < 128;i++){
-        if(array[i] > 0){
-            printf("%c:", i);
-            printf("%i\n", array[i]);
+    for(int c = 0; c < 128;c++){
+        if(array[c] > 0){
+            int n =  array[c] + 48;
             
-            //write(1,&array[i],1);
-
+            write(1, &c, 1);
+            write(1,":",1);
+            write(1, &n, 1);
+            write(1,"\n",1);
         }
     }
     return 0;
