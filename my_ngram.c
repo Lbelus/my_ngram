@@ -21,9 +21,7 @@
 #include <stdio.h>
 #include <unistd.h>
 
-
 #define SIZE_MAX 128
-
 
     // ref ITOA : https://www.strudel.org.uk/itoa/
 	char* their_itoa(int value, char* result, int base) {
@@ -51,15 +49,15 @@
 	}
 
 int main(int argc, char** argv){
-    
-    
+
     int array[SIZE_MAX] = {0};
 
     for(int x = 1; x < argc; x++){
         for(int y = 0; argv[x][y] != '\0'; y++){
             int decoy = (int)argv[x][y];
             array[decoy] += 1;
-            if(array[decoy] > 32767){
+            if(array[decoy] > 32766){
+                printf("int fail");
                 return 0; 
             }
         }
@@ -71,7 +69,7 @@ int main(int argc, char** argv){
             write(1, &c, 1);
             write(1,":",1);
             
-            if(n > 58){
+            if(n >= 58){
                 n = n - 48;
                 char buffer[5] = {0};
                 their_itoa(n, buffer, 10);
