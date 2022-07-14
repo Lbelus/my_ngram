@@ -47,6 +47,14 @@
 		}
 		return result;
 	}
+    int my_strlen(int* param_1){
+        ; int i = 0;
+      
+        while (param_1[i] != '\0'){
+            i++;
+        }
+        return(i);
+    }
 
 int main(int argc, char** argv){
 
@@ -71,9 +79,13 @@ int main(int argc, char** argv){
             
             if(n >= 58){
                 n = n - 48;
+                //printf("%i strlen",my_strlen(&n));
+                int sizen = 0;
+                sizen = my_strlen(&n);
                 char buffer[5] = {0};
+
                 their_itoa(n, buffer, 10);
-                write(1, buffer,5);
+                write(1, buffer,sizen);
             }else{
                 write(1, &n, 1);
             }
